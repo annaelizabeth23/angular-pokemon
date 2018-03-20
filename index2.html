@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+    <!-- ng-app is an example of a directive. it gives html extra power/ allows angular to make changes. It tells your code that this whole site is an agular app -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokemon App</title>
+</head>
+<body>
+    <p>Hi there this</p>
+    {{1 + 2}}
+    <!-- this double curly is called a mustache template -->
+
+    <!-- <div ng-show="condition ? true : false"></div> << this is an example of making your own directive -->
+    
+    Type something: <input ng-model="myValue">
+
+    <div>{{myValue.toUpperCase()}}</div>
+
+    <div ng-show="myValue">You are typing</div>
+    <!-- if myValue is true then display this text. It is a truthy/falsey thing -->
+
+    <div ng-if="myValue">You are typing</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
+    <script src="app/app.js" charset="utf-8"></script>
+</body>
+</html>
