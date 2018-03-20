@@ -1,29 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="pokemonApp">
     <!-- ng-app is an example of a directive. it gives html extra power/ allows angular to make changes. It tells your code that this whole site is an agular app -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pokemon App</title>
+    <link href="./css/main.css" rel="stylesheet">
 </head>
 <body>
-    <p>Hi there this</p>
-    {{1 + 2}}
+    <h1>Pokemon Collection</h1>
+    <div class="filter">
+        Filter pokemon by name: <input ng-model="myFilter">
+        <div class="filter-debug">
+            Filter Pokemon: {{myFilter}}
+        </div>
+    </div>
+    <!-- <p>Hi there this</p>
+    {{1 + 2}} -->
     <!-- this double curly is called a mustache template -->
 
     <!-- <div ng-show="condition ? true : false"></div> << this is an example of making your own directive -->
     
-    Type something: <input ng-model="myValue">
+    <!-- Type something: <input ng-model="myValue"> -->
 
-    <div>{{myValue.toUpperCase()}}</div>
+    <!-- <div>You typed: {{myValue.toUpperCase()}}</div> -->
 
-    <div ng-show="myValue">You are typing</div>
-    <!-- if myValue is true then display this text. It is a truthy/falsey thing -->
+    <!-- <div ng-show="myValue">You are typing</div> -->
+    <!-- if myValue is true then display this text. It is a truthy/falsey thing. the div is always there, just diplay none with CSS. faster than if -->
 
-    <div ng-if="myValue">You are typing</div>
+    <!-- <div ng-if="myValue">You are typing</div> -->
+    <!-- if myValue is true then display this text. It is a truthy/falsey thing. the div is removed from the DOM completely-->
+
+    <div ng-controller="cardsCtrl">
+        <div class="cardList">
+            <div class="card" ng-repeat="card in cards | filter:myFilter">
+            <div class="name">{{card.name}}</div>
+            <div class="picture" ng-style='{backgroundImage:"url(" + card.url + ")"}'></div>
+            <div class="stats">
+                <div class="stat">
+                    TYPE: {{card.type | uppercase}}
+                    <!-- the pipe is a filter and we are filtering each item through the uppercase function -->
+                </div>
+                <div class="stat" ng-repeat="(key, value) in card.stats">
+                    {{key | uppercase}}: {{value}}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- above we are making a directive and telling it to use the controller and it results in the result of the controller displaying in this div -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
     <script src="app/app.js" charset="utf-8"></script>
+    <script src="./app2/controllers/app2.js"></script>
 </body>
 </html>
